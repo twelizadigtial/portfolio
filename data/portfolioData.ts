@@ -86,7 +86,7 @@ export const personalData: PersonalDetails = {
   birthday: "07th July 2000",
   location: "Bandarawela, Sri Lanka",
   profileImage: "/profile.png",
-  resumeUrl: "https://drive.google.com/file/d/1Te2yOjA9246FpLsXnZN0qgA3H1HwDIDd/view?usp=sharing",
+  resumeUrl: "/resume",
   videoIntroUrl: "https://youtu.be/19Ou49woKTY?si=MRN40ugvAeezINpH",
 };
 
