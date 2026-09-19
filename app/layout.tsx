@@ -10,6 +10,14 @@ const CustomCursor = dynamic(
   { ssr: false }
 );
 
+const WhatsAppFloatingButton = dynamic(
+  () =>
+    import("@/components/ui/WhatsAppFloatingButton").then(
+      (mod) => mod.WhatsAppFloatingButton
+    ),
+  { ssr: false }
+);
+
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -68,6 +76,7 @@ export default function RootLayout({
         <main className="min-h-screen">
           {children}
         </main>
+        <WhatsAppFloatingButton />
       </body>
     </html>
   );
