@@ -19,10 +19,10 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-slate-950">
       <HeroSection />
       <AboutSection />
-      <ServicesSection />
       <TechStackSection />
       <ExperienceSection />
       <ProjectsSection />
+      <ServicesSection />
       <AchievementsSection />
       <ContactSection />
     </div>
