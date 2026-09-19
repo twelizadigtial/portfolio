@@ -150,8 +150,8 @@ export const servicesData: ServiceItem[] = [
   },
   {
     id: "freelance-services",
-    title: "Freelance Web Developer & Designer",
-    category: "04 — Freelance Development & Design",
+    title: "Freelancer",
+    category: "04 — Freelancer",
     description: "Delivering custom web development, bespoke UI/UX design, e-commerce platforms, and website enhancements for global clients.",
     techList: [
       "Custom Web Development",
