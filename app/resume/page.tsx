@@ -7,12 +7,10 @@ import {
   ArrowLeft,
   ExternalLink,
   FileText,
-  CheckCircle2,
   Mail,
   Phone,
   Briefcase,
   GraduationCap,
-  FolderGit2,
   Cpu,
   Sparkles,
 } from "lucide-react";
@@ -29,33 +27,39 @@ export default function ResumePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-sky-500/30 selection:text-sky-200">
-      {/* Top Header / Navigation Bar */}
-      <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/80 px-4 sm:px-8 py-3.5">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          
-          {/* Back to Portfolio Link */}
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Portfolio</span>
-          </Link>
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pt-24 sm:pt-28 pb-12 px-4 sm:px-6 lg:px-8 selection:bg-sky-500/30 selection:text-sky-200">
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto w-full space-y-6 sm:space-y-8">
+        
+        {/* Top Control & Action Bar (Cleanly integrated without header overlap) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-sky-950/60 via-slate-900 to-purple-950/60 border border-sky-500/30 shadow-xl">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 hover:border-sky-400 flex items-center justify-center text-slate-300 hover:text-sky-400 transition-all shrink-0 shadow-md group"
+              title="Back to Portfolio"
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+            </Link>
 
-          {/* Title Tag */}
-          <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-sky-400 bg-sky-500/10 border border-sky-500/20 px-3 py-1 rounded-full">
-            <FileText className="w-3.5 h-3.5" />
-            <span>CHATHUSHI JAYARATHNA — RESUME</span>
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs text-sky-400 font-bold uppercase tracking-wider">
+                <FileText className="w-3.5 h-3.5" />
+                <span>CHATHUSHI JAYARATHNA — RESUME</span>
+              </div>
+              <p className="text-xs text-slate-300 font-light mt-0.5">
+                Official Curriculum Vitae • Full-Stack Developer & Designer
+              </p>
+            </div>
           </div>
 
-          {/* Download & Raw PDF Actions */}
-          <div className="flex items-center gap-3">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
             <a
               href="/Chathushi_Jayarathna_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700/80 text-xs font-mono text-slate-200 hover:text-white hover:border-slate-600 transition-all shadow-md"
+              className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700/80 text-xs font-mono text-slate-200 hover:text-white hover:border-slate-600 transition-all shadow-md flex items-center gap-1.5"
             >
               <span>Raw PDF</span>
               <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
@@ -65,45 +69,15 @@ export default function ResumePage() {
               href="/Chathushi_Jayarathna_Resume.pdf"
               download="Chathushi_Jayarathna_Resume.pdf"
               onClick={handleDownload}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-xs font-mono font-bold text-white shadow-lg shadow-sky-500/25 transition-all hover:scale-105 active:scale-95"
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-xs font-mono font-bold text-white shadow-lg shadow-sky-500/25 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               <span>{downloading ? "Downloading..." : "Download Resume (PDF)"}</span>
             </a>
           </div>
         </div>
-      </header>
 
-      {/* Content Container */}
-      <div className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 space-y-8">
-        
-        {/* Banner Alert with Quick Download Action */}
-        <div className="rounded-2xl bg-gradient-to-r from-sky-950/60 via-slate-900 to-purple-950/60 border border-sky-500/30 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <h1 className="text-sm sm:text-base font-bold text-white">
-                Official Curriculum Vitae — Chathushi Jayarathna
-              </h1>
-              <p className="text-xs text-slate-300 font-light mt-0.5">
-                View the PDF directly in browser or download a copy to your device.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="/Chathushi_Jayarathna_Resume.pdf"
-            download="Chathushi_Jayarathna_Resume.pdf"
-            className="px-4 py-2 rounded-xl bg-slate-900 border border-sky-400/50 hover:bg-sky-500/20 text-sky-300 text-xs font-mono font-semibold transition-all flex items-center gap-2 shrink-0 shadow-md"
-          >
-            <Download className="w-3.5 h-3.5" />
-            Download PDF File
-          </a>
-        </div>
-
-        {/* PDF Object Viewer (Desktop & Tablet) */}
+        {/* Desktop PDF Viewer */}
         <div className="hidden md:block w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900">
           <object
             data="/Chathushi_Jayarathna_Resume.pdf#toolbar=1&navpanes=0"
@@ -123,15 +97,15 @@ export default function ResumePage() {
           </object>
         </div>
 
-        {/* Digital Interactive Resume Transcript (Mobile & High Contrast View) */}
+        {/* Digital Interactive Resume Transcript */}
         <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10 backdrop-blur-2xl space-y-8 shadow-2xl">
           
           {/* Resume Header */}
           <div className="border-b border-slate-800 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                 CHATHUSHI JAYARATHNA
-              </h2>
+              </h1>
               <p className="text-xs sm:text-sm font-mono text-sky-400 font-semibold mt-1">
                 Web Developer • Designer • IT Trainer • AI Enthusiast
               </p>
@@ -152,10 +126,10 @@ export default function ResumePage() {
 
           {/* Experience Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2">
               <Briefcase className="w-4 h-4 text-sky-400" />
               Work Experience
-            </h3>
+            </h2>
 
             <div className="space-y-6">
               {/* Job 1 */}
@@ -236,10 +210,10 @@ export default function ResumePage() {
 
           {/* Education Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2">
               <GraduationCap className="w-4 h-4 text-sky-400" />
               Education & Qualifications
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
               <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
@@ -276,10 +250,10 @@ export default function ResumePage() {
 
           {/* Technical Skills Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2">
               <Cpu className="w-4 h-4 text-sky-400" />
               Technical Skills Summary
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-mono">
               <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
@@ -324,6 +298,6 @@ export default function ResumePage() {
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }
