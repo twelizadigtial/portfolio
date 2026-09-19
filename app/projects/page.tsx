@@ -10,7 +10,6 @@ import {
   Sparkles,
   ArrowLeft,
   Filter,
-  Layers,
 } from "lucide-react";
 import { projectsData, ProjectItem } from "@/data/portfolioData";
 
@@ -84,11 +83,6 @@ export default function ProjectsPage() {
             <ArrowLeft className="w-4 h-4 text-sky-400" />
             Back to Home
           </Link>
-
-          <div className="text-xs font-mono text-slate-400 bg-slate-900/60 px-3.5 py-1.5 rounded-full border border-slate-800 flex items-center gap-2">
-            <Layers className="w-3.5 h-3.5 text-sky-400" />
-            Total Projects: <span className="text-sky-400 font-bold">{projectsData.length}</span>
-          </div>
         </div>
 
         {/* Filter Tabs */}
