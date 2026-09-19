@@ -7,11 +7,10 @@ import {
   FileText,
   Sparkles,
   ArrowRight,
-  Github,
+  Phone,
   Linkedin,
   Mail,
   MessageSquare,
-  Video,
 } from "lucide-react";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -63,16 +62,16 @@ export const HeroSection: React.FC = () => {
 
   const getSocialIcon = (name: string) => {
     switch (name.toLowerCase()) {
-      case "github":
-        return <Github className="w-4 h-4" />;
+      case "call":
+      case "phone":
+        return <Phone className="w-4 h-4" />;
+      case "whatsapp":
+        return <MessageSquare className="w-4 h-4" />;
       case "linkedin":
         return <Linkedin className="w-4 h-4" />;
       case "email":
+      case "mail":
         return <Mail className="w-4 h-4" />;
-      case "whatsapp":
-        return <MessageSquare className="w-4 h-4" />;
-      case "skype":
-        return <Video className="w-4 h-4" />;
       default:
         return <Mail className="w-4 h-4" />;
     }
@@ -208,18 +207,18 @@ export const HeroSection: React.FC = () => {
           </span>
           <div className="flex items-center gap-3">
             {[
-              { name: "GitHub", url: "https://github.com/Chathu-Jayarathna" },
-              { name: "LinkedIn", url: "https://www.linkedin.com/in/chathushi-jayarathna-578098234" },
+              { name: "Call", url: `tel:${personalData.phone.replace(/[^+\d]/g, "")}` },
               { name: "WhatsApp", url: "https://wa.me/94742269976" },
-              { name: "Email", url: "mailto:chathushi0707@gmail.com" },
-              { name: "Skype", url: "https://join.skype.com/invite/sneaIOJ34nBW" },
+              { name: "LinkedIn", url: "https://www.linkedin.com/in/chathushi-jayarathna-578098234" },
+              { name: "Email", url: `mailto:${personalData.email}` },
             ].map((link, idx) => (
               <a
                 key={idx}
                 href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.name === "Call" || link.name === "Email" ? "_self" : "_blank"}
+                rel={link.name === "Call" || link.name === "Email" ? undefined : "noopener noreferrer"}
                 aria-label={link.name}
+                title={link.name}
                 className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-slate-200 hover:text-sky-300 hover:border-sky-400 hover:bg-slate-800 transition-all duration-300 shadow-md group"
               >
                 <span className="group-hover:scale-110 transition-transform">
