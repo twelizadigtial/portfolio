@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   FileText,
   Sparkles,
@@ -16,7 +17,41 @@ import { Spotlight } from "@/components/ui/Spotlight";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { personalData } from "@/data/portfolioData";
 
+// Dynamically import 3D WebGL Background (client-side only)
+const Hero3DBackground = dynamic(
+  () => import("@/components/ui/Hero3DBackground"),
+  { ssr: false }
+);
+
 export const HeroSection: React.FC = () => {
+  // 3D Parallax Mouse Motion
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), {
+    stiffness: 120,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), {
+    stiffness: 120,
+    damping: 20,
+  });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const xPct = (e.clientX - rect.left) / width - 0.5;
+    const yPct = (e.clientY - rect.top) / height - 0.5;
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   const scrollToAbout = () => {
     const elem = document.getElementById("about");
     if (elem) {
@@ -44,22 +79,37 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-950">
+    <section
+      id="hero"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-950 [perspective:1000px]"
+    >
+      {/* 3D WebGL Background Canvas */}
+      <Hero3DBackground />
+
       {/* Background Spotlights */}
       <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
       <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="#38bdf8" />
       <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="#a855f7" />
 
       {/* Ambient Cyber Grid Overlay & Radial Mask */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#33415525_1px,transparent_1px),linear-gradient(to_bottom,#33415525_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_65%_55%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#33415520_1px,transparent_1px),linear-gradient(to_bottom,#33415520_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* Centered Main Content Container */}
-      <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center">
+      {/* Centered Main Content Container with Interactive 3D Tilt */}
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center"
+      >
         
         {/* Name Tag */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, z: -20 }}
+          animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/95 border border-sky-400/40 text-sky-300 font-mono text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-6 shadow-xl shadow-sky-950/40 backdrop-blur-md"
         >
@@ -69,8 +119,8 @@ export const HeroSection: React.FC = () => {
 
         {/* Main Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, z: -30 }}
+          animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
           className="mb-4 max-w-5xl mx-auto w-full"
         >
@@ -84,8 +134,8 @@ export const HeroSection: React.FC = () => {
 
         {/* Introduction Text */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, z: -20 }}
+          animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
           className="mt-4 text-sm sm:text-base lg:text-lg text-slate-200 max-w-3xl font-normal leading-relaxed mb-6"
         >
@@ -94,8 +144,8 @@ export const HeroSection: React.FC = () => {
 
         {/* Skill Badges */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, z: -10 }}
+          animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
           className="mt-2 flex flex-wrap items-center justify-center gap-2.5 text-[11px] sm:text-xs font-mono text-slate-300 mb-8"
         >
@@ -119,8 +169,8 @@ export const HeroSection: React.FC = () => {
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, z: -10 }}
+          animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
           className="flex flex-wrap items-center justify-center gap-4 mb-10 w-full sm:w-auto"
         >
@@ -147,8 +197,8 @@ export const HeroSection: React.FC = () => {
 
         {/* Social Links Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, z: -10 }}
+          animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
           className="pt-6 border-t border-slate-800 w-full max-w-md flex flex-col sm:flex-row items-center justify-between gap-4"
         >
@@ -180,7 +230,7 @@ export const HeroSection: React.FC = () => {
           </div>
         </motion.div>
 
-      </div>
+      </motion.div>
 
       {/* Bottom Scroll Indicator */}
       <motion.div
@@ -204,4 +254,3 @@ export const HeroSection: React.FC = () => {
     </section>
   );
 };
-
