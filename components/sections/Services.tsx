@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, Server, Layout, Sparkles, CheckCircle2 } from "lucide-react";
+import { Code2, Server, Layout, Briefcase, Sparkles, CheckCircle2 } from "lucide-react";
 import { servicesData } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
@@ -10,6 +10,7 @@ const iconMap: Record<string, any> = {
   Code2,
   Server,
   Layout,
+  Briefcase,
 };
 
 export const ServicesSection: React.FC = () => {
@@ -31,7 +32,7 @@ export const ServicesSection: React.FC = () => {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono mb-4"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Core Expertise
+            Core Expertise & Freelance
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -49,12 +50,12 @@ export const ServicesSection: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-slate-400 max-w-xl mx-auto text-base sm:text-lg"
           >
-            Delivering end-to-end full-stack software solutions, robust backends, and user-centered design.
+            Delivering end-to-end full-stack software solutions, robust backends, UX design, and custom freelance services.
           </motion.p>
         </div>
 
         {/* Services Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {servicesData.map((service, idx) => {
             const ServiceIcon = iconMap[service.iconName] || Code2;
             const isHovered = hoveredCard === service.id;

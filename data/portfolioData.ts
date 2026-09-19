@@ -148,6 +148,23 @@ export const servicesData: ServiceItem[] = [
     colorTheme: "from-amber-500/20 via-indigo-500/10 to-transparent",
     iconName: "Layout",
   },
+  {
+    id: "freelance-services",
+    title: "Freelance & Consulting",
+    category: "04 — Freelance Services",
+    description: "Providing custom web development, e-commerce solutions, site enhancements, and digital consulting for global clients.",
+    techList: [
+      "Custom Web Engineering",
+      "E-Commerce Websites",
+      "Client Web Platforms",
+      "UI/UX Redesign",
+      "Website Maintenance",
+      "SEO Optimization",
+      "API Integration",
+    ],
+    colorTheme: "from-emerald-600/20 via-teal-500/10 to-transparent",
+    iconName: "Briefcase",
+  },
 ];
 
 export const experienceData: ExperienceItem[] = [
