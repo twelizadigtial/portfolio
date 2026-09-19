@@ -26,7 +26,7 @@ export const MovingBorderContainer: React.FC<{
   return (
     <div
       className={cn(
-        "bg-transparent relative p-[1px] overflow-hidden rounded-3xl",
+        "bg-transparent relative p-[1px] overflow-hidden rounded-3xl transform-gpu [backface-visibility:hidden]",
         containerClassName
       )}
       style={{
@@ -44,7 +44,7 @@ export const MovingBorderContainer: React.FC<{
 
       <div
         className={cn(
-          "relative bg-slate-900/80 border border-slate-800 backdrop-blur-xl text-white w-full h-full antialiased transition-all duration-300 group hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10",
+          "relative bg-slate-900/80 border border-slate-800 backdrop-blur-xl text-white w-full h-full antialiased transition-[border-color,box-shadow,background-color] duration-300 group hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transform-gpu [backface-visibility:hidden]",
           className
         )}
         style={{
@@ -75,7 +75,7 @@ export const MovingBorder = ({
 
   useAnimationFrame((time) => {
     const length = pathRef.current?.getTotalLength();
-    if (length) {
+    if (length && length > 0) {
       const pxPerMillisecond = length / duration;
       progress.set((time * pxPerMillisecond) % length);
     }
@@ -97,7 +97,7 @@ export const MovingBorder = ({
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
-        className="absolute h-full w-full"
+        className="absolute h-full w-full pointer-events-none"
         width="100%"
         height="100%"
         {...otherProps}
@@ -119,6 +119,7 @@ export const MovingBorder = ({
           display: "inline-block",
           transform,
         }}
+        className="pointer-events-none"
       >
         {children}
       </motion.div>

@@ -108,9 +108,9 @@ export const AboutSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="md:col-span-7 bg-gradient-to-br from-slate-900/95 via-slate-900/75 to-slate-950 border border-slate-700/80 rounded-3xl p-6 sm:p-8 backdrop-blur-2xl relative overflow-hidden group hover:border-sky-400/60 transition-all duration-300 flex flex-col justify-between shadow-2xl"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="md:col-span-7 bg-gradient-to-br from-slate-900/95 via-slate-900/75 to-slate-950 border border-slate-700/80 rounded-3xl p-6 sm:p-8 backdrop-blur-2xl relative overflow-hidden group hover:border-sky-400/60 transition-[border-color,box-shadow,background-color] duration-300 flex flex-col justify-between shadow-2xl transform-gpu [backface-visibility:hidden]"
           >
             {/* Ambient Card Spotlight Glow */}
             <div className="absolute -top-12 -left-12 w-64 h-64 bg-sky-500/20 rounded-full blur-3xl pointer-events-none group-hover:bg-sky-500/30 transition-all duration-500" />
@@ -221,9 +221,9 @@ export const AboutSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-5 bg-slate-900/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-purple-400/50 transition-all duration-300 shadow-xl"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="md:col-span-5 bg-slate-900/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-purple-400/50 transition-[border-color,box-shadow,background-color] duration-300 shadow-xl transform-gpu [backface-visibility:hidden]"
           >
             <div>
               <h4 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
@@ -266,9 +266,9 @@ export const AboutSection: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="md:col-span-6 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-sky-500/40 transition-all duration-300"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className="md:col-span-6 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-sky-500/40 transition-[border-color,box-shadow,background-color] duration-300 transform-gpu [backface-visibility:hidden]"
               >
                 <div>
                   <div className="flex items-center gap-2.5 mb-6">
@@ -324,9 +324,9 @@ export const AboutSection: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="md:col-span-6 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-purple-500/40 transition-all duration-300"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className="md:col-span-6 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-purple-500/40 transition-[border-color,box-shadow,background-color] duration-300 transform-gpu [backface-visibility:hidden]"
               >
                 <div>
                   <div className="flex items-center gap-2.5 mb-6">

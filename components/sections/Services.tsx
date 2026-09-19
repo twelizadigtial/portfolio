@@ -27,7 +27,7 @@ export const ServicesSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono mb-4"
           >
@@ -37,7 +37,7 @@ export const ServicesSection: React.FC = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-5xl font-bold tracking-tight text-white"
           >
@@ -46,7 +46,7 @@ export const ServicesSection: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-slate-400 max-w-xl mx-auto text-base sm:text-lg"
           >
@@ -65,32 +65,37 @@ export const ServicesSection: React.FC = () => {
                 key={service.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                whileHover={{ y: -6 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1,
+                  ease: [0.21, 0.47, 0.32, 0.98],
+                }}
                 onMouseEnter={() => setHoveredCard(service.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 className={cn(
-                  "relative rounded-3xl p-8 bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between overflow-hidden group hover:-translate-y-2 shadow-xl hover:border-sky-500/40 hover:shadow-2xl hover:shadow-sky-500/10",
+                  "relative rounded-3xl p-8 bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl transition-[border-color,box-shadow,background-color] duration-300 flex flex-col justify-between overflow-hidden group shadow-xl hover:border-sky-500/40 hover:shadow-2xl hover:shadow-sky-500/10 transform-gpu [backface-visibility:hidden]",
                   isHovered ? "border-sky-500/40 shadow-sky-500/15" : ""
                 )}
               >
                 {/* Glowing Background Shader on Hover */}
                 <div
                   className={cn(
-                    "absolute inset-0 bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
+                    "absolute inset-0 bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none",
                     service.colorTheme
                   )}
                 />
 
                 {/* Top ambient highlight bar */}
-                <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-sky-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-sky-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 {/* Animated Decorative Corner Accents */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-sky-500/10 rounded-bl-full pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-sky-500/10 rounded-bl-full pointer-events-none group-hover:scale-150 transition-transform duration-300" />
 
                 <div className="relative z-10">
                   {/* Icon Header */}
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-800/90 to-slate-900 border border-slate-700/80 flex items-center justify-center mb-6 group-hover:border-sky-400/80 group-hover:bg-sky-500/10 group-hover:shadow-lg group-hover:shadow-sky-500/20 transition-all duration-300 shadow-md">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-800/90 to-slate-900 border border-slate-700/80 flex items-center justify-center mb-6 group-hover:border-sky-400/80 group-hover:bg-sky-500/10 group-hover:shadow-lg group-hover:shadow-sky-500/20 transition-colors duration-300 shadow-md">
                     <ServiceIcon className="w-7 h-7 text-sky-400 group-hover:scale-110 group-hover:text-sky-300 transition-all duration-300" />
                   </div>
 
@@ -116,7 +121,7 @@ export const ServicesSection: React.FC = () => {
                   <span className="text-xs text-slate-300 font-mono flex items-center gap-1.5 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Production Ready
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 group-hover:bg-sky-500 group-hover:border-sky-400 group-hover:text-white transition-all duration-300 group-hover:translate-x-0.5">
+                  <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 group-hover:bg-sky-500 group-hover:border-sky-400 group-hover:text-white transition-colors duration-300 group-hover:translate-x-0.5">
                     →
                   </div>
                 </div>

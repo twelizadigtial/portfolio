@@ -143,9 +143,9 @@ export const TechStackSection: React.FC = () => {
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.percentage}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.1 }}
-                      className="h-full rounded-full bg-gradient-to-r from-sky-400 to-blue-500 group-hover:from-sky-300 group-hover:to-blue-400 transition-colors"
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.7, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      className="h-full rounded-full bg-gradient-to-r from-sky-400 to-blue-500 group-hover:from-sky-300 group-hover:to-blue-400 transition-colors transform-gpu"
                     />
                   </div>
                 </div>

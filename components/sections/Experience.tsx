@@ -53,8 +53,9 @@ export const ExperienceSection: React.FC = () => {
               key={exp.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="transform-gpu [backface-visibility:hidden]"
             >
               <MovingBorderContainer
                 duration={12000 + idx * 3000}

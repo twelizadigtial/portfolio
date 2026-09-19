@@ -76,9 +76,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isHomePage = t
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-3xl bg-slate-900/80 border border-slate-700/80 p-6 sm:p-10 backdrop-blur-2xl group relative overflow-hidden hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-500"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="rounded-3xl bg-slate-900/80 border border-slate-700/80 p-6 sm:p-10 backdrop-blur-2xl group relative overflow-hidden hover:border-sky-400/60 hover:shadow-2xl hover:shadow-sky-500/20 transition-[border-color,box-shadow,background-color] duration-300 transform-gpu [backface-visibility:hidden]"
           >
             {/* Top ambient highlight line (TWELIZA signature accent) */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-sky-400/50 via-purple-400/40 to-transparent pointer-events-none" />
@@ -183,9 +183,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isHomePage = t
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="rounded-3xl bg-slate-900/60 border border-slate-800 p-5 sm:p-6 backdrop-blur-2xl group relative overflow-hidden hover:border-sky-500/50 hover:shadow-2xl hover:shadow-sky-500/15 transition-all duration-500 flex flex-col justify-between"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="rounded-3xl bg-slate-900/60 border border-slate-800 p-5 sm:p-6 backdrop-blur-2xl group relative overflow-hidden hover:border-sky-500/50 hover:shadow-2xl hover:shadow-sky-500/15 transition-[border-color,box-shadow,background-color] duration-300 flex flex-col justify-between transform-gpu [backface-visibility:hidden]"
             >
               {/* Top ambient highlight line */}
               <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-sky-400/40 via-purple-400/30 to-transparent pointer-events-none" />
