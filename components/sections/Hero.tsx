@@ -82,7 +82,7 @@ export const HeroSection: React.FC = () => {
       id="hero"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-950 [perspective:1000px]"
+      className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-28 sm:pb-32 lg:pb-36 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-950 [perspective:1000px]"
     >
       {/* 3D WebGL Background Canvas */}
       <Hero3DBackground />
@@ -171,7 +171,7 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20, z: -10 }}
           animate={{ opacity: 1, y: 0, z: 0 }}
           transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
-          className="flex flex-wrap items-center justify-center gap-4 mb-10 w-full sm:w-auto"
+          className="flex flex-wrap items-center justify-center gap-4 mb-8 sm:mb-10 w-full sm:w-auto"
         >
           <MagneticButton
             onClick={scrollToAbout}
@@ -231,22 +231,22 @@ export const HeroSection: React.FC = () => {
 
       </motion.div>
 
-      {/* Bottom Scroll Indicator */}
+      {/* Bottom Scroll Indicator - Positioned with safe clearance */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.9 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 cursor-pointer group z-20"
+        className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1 cursor-pointer group z-20"
         onClick={scrollToAbout}
       >
         <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-slate-400 group-hover:text-sky-400 transition-colors">
           SCROLL
         </span>
-        <div className="w-5 h-9 rounded-full border-2 border-slate-700 group-hover:border-sky-400 p-1 flex justify-center transition-colors shadow-lg">
+        <div className="w-5 h-8 rounded-full border-2 border-slate-700 group-hover:border-sky-400 p-1 flex justify-center transition-colors shadow-lg">
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-2 bg-sky-400 rounded-full"
+            className="w-1 h-1.5 bg-sky-400 rounded-full"
           />
         </div>
       </motion.div>
