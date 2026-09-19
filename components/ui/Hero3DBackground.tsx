@@ -37,59 +37,9 @@ export const Hero3DBackground: React.FC = () => {
     const mainGroup = new THREE.Group();
     scene.add(mainGroup);
 
-    // --- 1. Central Floating 3D Geometric Structure ---
-    // Outer Icosahedron Wireframe
-    const outerGeo = new THREE.IcosahedronGeometry(11, 2);
-    const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.18,
-    });
-    const outerMesh = new THREE.Mesh(outerGeo, outerMat);
-    mainGroup.add(outerMesh);
-
-    // Inner Concentric Octahedron Wireframe
-    const innerGeo = new THREE.OctahedronGeometry(6, 1);
-    const innerMat = new THREE.MeshBasicMaterial({
-      color: 0xa855f7,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.28,
-    });
-    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-    mainGroup.add(innerMesh);
-
-    // Core Glowing Sphere Nodes
-    const nodeCount = 18;
-    const nodesGeo = new THREE.BufferGeometry();
-    const nodePositions = new Float32Array(nodeCount * 3);
-    for (let i = 0; i < nodeCount; i++) {
-      const radius = 8 + Math.random() * 6;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      nodePositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      nodePositions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      nodePositions[i * 3 + 2] = radius * Math.cos(phi);
-    }
-    nodesGeo.setAttribute(
-      "position",
-      new THREE.BufferAttribute(nodePositions, 3)
-    );
-
-    const nodeMat = new THREE.PointsMaterial({
-      color: 0x38bdf8,
-      size: 0.7,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-    });
-    const nodePoints = new THREE.Points(nodesGeo, nodeMat);
-    mainGroup.add(nodePoints);
-
-    // --- 2. Ambient 3D Particle Constellation Field ---
+    // --- Ambient 3D Particle Constellation Field ---
     const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 300 : 750;
+    const particleCount = isMobile ? 350 : 850;
     const particlesGeo = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
@@ -99,13 +49,13 @@ export const Hero3DBackground: React.FC = () => {
     const colorCyan = new THREE.Color(0x06b6d4);
 
     for (let i = 0; i < particleCount; i++) {
-      particlePositions[i * 3] = (Math.random() - 0.5) * 120;
-      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 120;
-      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+      particlePositions[i * 3] = (Math.random() - 0.5) * 130;
+      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 130;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 90;
 
       // Random blend between sky blue, purple, and cyan
       const rand = Math.random();
-      const c = rand < 0.4 ? colorSky : rand < 0.7 ? colorPurple : colorCyan;
+      const c = rand < 0.45 ? colorSky : rand < 0.75 ? colorPurple : colorCyan;
       particleColors[i * 3] = c.r;
       particleColors[i * 3 + 1] = c.g;
       particleColors[i * 3 + 2] = c.b;
@@ -128,18 +78,18 @@ export const Hero3DBackground: React.FC = () => {
       blending: THREE.AdditiveBlending,
     });
     const particleSystem = new THREE.Points(particlesGeo, particlesMat);
-    scene.add(particleSystem);
+    mainGroup.add(particleSystem);
 
-    // --- 3. Dynamic Lighting ---
-    const pointLight1 = new THREE.PointLight(0x38bdf8, 2, 50);
+    // --- Dynamic Lighting ---
+    const pointLight1 = new THREE.PointLight(0x38bdf8, 2, 60);
     pointLight1.position.set(15, 15, 15);
     scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0xa855f7, 2, 50);
+    const pointLight2 = new THREE.PointLight(0xa855f7, 2, 60);
     pointLight2.position.set(-15, -15, 10);
     scene.add(pointLight2);
 
-    // --- 4. Interactive Mouse Parallax Tracking ---
+    // --- Interactive Mouse Parallax Tracking ---
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
@@ -166,7 +116,7 @@ export const Hero3DBackground: React.FC = () => {
 
     window.addEventListener("resize", handleResize);
 
-    // --- 5. Animation Loop ---
+    // --- Animation Loop ---
     let animationFrameId: number;
     let clock = new THREE.Clock();
 
@@ -177,25 +127,16 @@ export const Hero3DBackground: React.FC = () => {
       targetX += (mouseX - targetX) * 0.04;
       targetY += (mouseY - targetY) * 0.04;
 
-      // Rotate 3D geometries gently
-      outerMesh.rotation.x = elapsedTime * 0.08;
-      outerMesh.rotation.y = elapsedTime * 0.12;
-
-      innerMesh.rotation.x = -elapsedTime * 0.14;
-      innerMesh.rotation.y = -elapsedTime * 0.18;
-
-      nodePoints.rotation.y = elapsedTime * 0.05;
-
-      // Particle system rotation
+      // Particle system subtle floating rotation
       particleSystem.rotation.y = elapsedTime * 0.02;
       particleSystem.rotation.x = elapsedTime * 0.01;
 
       // Mouse Parallax camera angle adjustment
-      mainGroup.rotation.y = targetX * 0.25;
-      mainGroup.rotation.x = -targetY * 0.25;
+      mainGroup.rotation.y = targetX * 0.18;
+      mainGroup.rotation.x = -targetY * 0.18;
 
-      camera.position.x = targetX * 3;
-      camera.position.y = -targetY * 3;
+      camera.position.x = targetX * 2.5;
+      camera.position.y = -targetY * 2.5;
       camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
@@ -215,12 +156,6 @@ export const Hero3DBackground: React.FC = () => {
       }
 
       // Dispose Geometries and Materials
-      outerGeo.dispose();
-      outerMat.dispose();
-      innerGeo.dispose();
-      innerMat.dispose();
-      nodesGeo.dispose();
-      nodeMat.dispose();
       particlesGeo.dispose();
       particlesMat.dispose();
       renderer.dispose();
@@ -230,7 +165,7 @@ export const Hero3DBackground: React.FC = () => {
   return (
     <div
       ref={mountRef}
-      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-85"
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-75"
       aria-hidden="true"
     />
   );
