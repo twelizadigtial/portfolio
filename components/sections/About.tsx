@@ -200,10 +200,13 @@ export const AboutSection: React.FC = () => {
 
             {/* Card Footer */}
             <div className="relative z-10 mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
-                <MapPin className="w-4 h-4 text-sky-400" />
-                <span>Based in {personalData.location}</span>
-              </div>
+              <a
+                href={`tel:${personalData.phone.replace(/[^+\d]/g, "")}`}
+                className="flex items-center gap-2 text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors group/phone"
+              >
+                <Phone className="w-4 h-4 text-sky-400 group-hover/phone:scale-110 transition-transform" />
+                <span>{personalData.phone}</span>
+              </a>
               <button
                 onClick={handleCopyEmail}
                 className="text-xs text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1.5 transition-colors group/btn"
