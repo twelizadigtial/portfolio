@@ -75,7 +75,9 @@ export const WhatsAppFloatingButton: React.FC = () => {
             <div className="p-4 bg-slate-950/80 space-y-3">
               <div className="bg-slate-800/90 border border-slate-700/60 p-3.5 rounded-2xl rounded-tl-sm text-slate-200 text-xs sm:text-sm leading-relaxed shadow-sm">
                 <p>
-                  Hi there! 👋 Thanks for stopping by. How can I help you with your next project or web development needs today?
+                  Hi there! 👋 Thanks for stopping by.
+                  <br />
+                  I’m open to <strong className="font-semibold text-white">career opportunities, freelance projects, and collaborations</strong>. How can I help you today?
                 </p>
                 <span className="block text-[10px] text-slate-400 text-right mt-1.5 font-mono">
                   Just now
