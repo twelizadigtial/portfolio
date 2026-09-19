@@ -11,7 +11,7 @@ import {
   ArrowLeft,
   Filter,
 } from "lucide-react";
-import { projectsData, ProjectItem } from "@/data/portfolioData";
+import { projectsData } from "@/data/portfolioData";
 
 type CategoryFilter = "All" | "3D & WebGL" | "Web Apps & Systems" | "E-Commerce" | "Client Showcase";
 
@@ -85,7 +85,7 @@ export default function ProjectsPage() {
           </Link>
         </div>
 
-        {/* Filter Tabs */}
+        {/* Filter Tabs with Gliding Active Tab Indicator */}
         <div className="flex items-center justify-center flex-wrap gap-2.5 mb-12">
           <div className="flex items-center gap-1.5 text-xs font-mono text-slate-500 mr-2">
             <Filter className="w-3.5 h-3.5 text-sky-400" />
@@ -97,30 +97,44 @@ export default function ProjectsPage() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-xs font-mono font-medium transition-all duration-200 border ${
-                  isActive
-                    ? "bg-gradient-to-r from-sky-500 to-blue-600 text-white border-sky-400/40 shadow-lg shadow-sky-500/20 scale-105 font-bold"
-                    : "bg-slate-900/80 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700"
-                }`}
+                className="relative px-4 py-2 rounded-full text-xs font-mono font-medium transition-colors duration-200 border border-slate-800/80 cursor-pointer overflow-hidden backdrop-blur-md"
               >
-                {category}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeFilterTab"
+                    className="absolute inset-0 bg-gradient-to-r from-sky-500 to-blue-600 rounded-full border border-sky-400/40 shadow-lg shadow-sky-500/20"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className={`relative z-10 ${isActive ? "text-white font-bold" : "text-slate-400 hover:text-slate-200"}`}>
+                  {category}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* Projects Grid (TWELIZA-inspired luxury showcase cards) */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredProjects.map((project, idx) => (
+        {/* Projects Grid with Smooth FLIP & PopLayout Transitions */}
+        <motion.div
+          layout
+          transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="bg-slate-900/60 border border-slate-800/90 rounded-3xl p-5 sm:p-6 backdrop-blur-2xl group hover:border-sky-500/50 hover:shadow-2xl hover:shadow-sky-500/15 transition-all duration-500 ease-out hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden"
+                initial={{ opacity: 0, y: 16, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
+                whileHover={{ y: -6 }}
+                transition={{
+                  duration: 0.35,
+                  ease: [0.25, 1, 0.5, 1],
+                  layout: { duration: 0.4, ease: [0.25, 1, 0.5, 1] },
+                }}
+                className="bg-slate-900/60 border border-slate-800/90 rounded-3xl p-5 sm:p-6 backdrop-blur-2xl group hover:border-sky-500/50 hover:shadow-2xl hover:shadow-sky-500/15 transition-[border-color,box-shadow,background-color] duration-300 flex flex-col justify-between relative overflow-hidden transform-gpu [backface-visibility:hidden]"
               >
                 {/* Top ambient highlight line (TWELIZA signature accent) */}
                 <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-sky-400/40 via-purple-400/30 to-transparent pointer-events-none" />
@@ -242,7 +256,7 @@ export default function ProjectsPage() {
                       </a>
                     ) : (
                       <span className="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400 flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-sky-400" /> Client Work
+                        <Sparkles className="w-3.5 h-3.5 text-sky-400" /> Client Work
                       </span>
                     )}
                   </div>
